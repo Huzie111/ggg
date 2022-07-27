@@ -1,0 +1,38 @@
+{% extends "app.html" %}
+    {% block content %}
+    <section class="container-fluid mt-3">
+        <table class="table table-bordered table-stripped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Copy Number</th>
+                    <th>Subject Area</th>
+                    <th>Publication Date</th>
+                    <th>Status</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.copy_number }}</td>
+                    <td>{{ book.category }}</td>
+                    <td>{{ book.publication_date }}</td>
+                    <td>
+                        {% if book.status == 'AV' %}
+                            <a href="{% url 'hope:Borrowpage' book.id %}">Borrow</a>
+                        {% else %}  
+                            {{book.status}}  
+                        {% endif %}
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

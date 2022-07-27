@@ -1,0 +1,40 @@
+  {% extends "app.html" %}
+  {% block content %}
+    <section class="container-fluid mt-3">
+        <section class="row justify-content-center">
+            <div class="jumbotron py-1 text-muted">
+                Book: {{ book.title }} by {{ book.author }} 
+                <hr/>
+            </div>
+            <div class="col-md-6 mt-2">
+                <div class="card card-body shadow">
+                    <h5 class="mt-2">Name: {{ book.title }}</h5>
+                    <h5 class="mt-2">Author: {{ book.author }}</h5>
+                    <h5 class="mt-2">Copy Number: {{ book.copy_number }}</h5>
+                    <h5 class="mt-2">Category: {{ book.category }}</h5>
+                    <h5 class="mt-2">Date Published: {{ book.publication_date }}</h5>
+                    <h5 class="mt-2">Status: Available</h5>
+                </div>
+            </div>
+            <div class="col-md-6 mt-2">
+                <div class="card card-body h-100 shadow">
+                    <form action="{% url 'hope:borrow_book' %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="book_id" class="form-label d-none">Book ID</label>
+                            <input type="hidden" class="form-control" id="book_id" 
+                            aria-describedby="bookid" name="book_id" value="{{ book_id }}">
+                        </div>
+                        <div class="mb-3 text-danger"> 
+                            <h5> Note: The book should be picked from the library within 1 hour after booking
+                                it. Beyond that, the book will be made available for anyone else to book it.
+                            </h5>
+                            <p class="text-success">Thank you for understanding. </p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Borrow This Book</button>
+                      </form>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

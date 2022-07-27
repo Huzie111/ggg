@@ -1,0 +1,70 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        img {
+            width: 1100px;
+            height: 600px;
+            position: relative;
+
+        }
+        body {
+            background: url({% static 'hope/media/image.jpg' %});
+            background-size:cover;
+            background-attachment:fixed;
+            }
+        ul {
+            list-style-type: none;
+        }
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            padding: 14px 16px;
+            background-color: #333;
+            text-decoration: none;
+            
+        }
+        li a:hover{
+            background-color: green;
+        }
+        .active {
+            background-color: green;
+        }
+        div {
+            float: left;
+            text-decoration: none;
+            color: white;
+        }
+        div a {
+            float: left;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    <div>
+        <h3>Hello,  {{user.username}}</h3>
+        <a href="lib/logout">LOG OUT</a>
+    </div>
+    {% else %}
+    <ul>
+    <li><a href="lib/login">LOGIN</a></li>
+    <li><a href="lib/register">REGISTER</a></li>
+    </ul>
+    {% endif %}
+    <!-- <img src="{% static 'lib/media/image.jpg' %}" alt="Background image"> -->
+    
+    
+</body>
+</html>
