@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'Library_application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config("NAME"),
-        'USER': config('USER'),
-        'PASSWORD': config("PASSWORD"),
-        'HOST': config("HOST", default='localhost')
+        'NAME': 'coursework',
+        'USER': 'postgres',
+        'PASSWORD': '256huzaifa',
+        'HOST':'localhost'
     }
 }
 
