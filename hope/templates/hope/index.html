@@ -23,10 +23,14 @@
                     <td>{{ book.category }}</td>
                     <td>{{ book.publication_date }}</td>
                     <td>
+                        
                         {% if book.status == 'AV' %}
                             <a href="{% url 'hope:Borrowpage' book.id %}">Borrow</a>
                         {% else %}  
-                            {{book.status}}  
+                            <!-- {{book.status}}   -->
+                            {% if book.status == 'UNAV' %}
+                                <span>Unavailable</span>
+                            {% endif %}
                         {% endif %}
                     </td>
                    

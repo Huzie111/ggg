@@ -1,0 +1,38 @@
+{% extends 'app.html' %}
+
+{% block content %} 
+
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card card-body mt-3 shadow">
+                    <h5>Request Complete:</h5>
+                    {% for message in messages %} 
+                        <div class="alert alert-info">
+                            <span>
+                                {{ message }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-1" id="auto">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        let interval = 60;
+        const el = document.getElementById('auto');
+        let auto = setInterval(() => {
+            interval--;
+            el.innerHTML = "Re-sending request in: " + interval;
+            if(interval <= 0)
+            {
+                clearInterval(auto);
+                window.location.reload();
+            }
+        }, 1000);
+    </script>
+
+{% endblock content %}

@@ -1,12 +1,14 @@
-#from tkinter import CASCADE
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
+
+
 
 # Create your models here.
 
 
 class Books(models.Model):
-
+    #extending from the inbuilt model TextChoices.
     class BookStatusChoices(models.TextChoices):
         AVAILABLE = "AV", ("Available")
         UNAVAILABLE = "UNAV", ("Unavailable")
@@ -37,9 +39,5 @@ class Borrowed_books(models.Model):
     return_status = models.CharField(max_length=15, default="BK", choices=ReturnStatusChoices.choices)
 
     
-
-
     
 
-    
-   

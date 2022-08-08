@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+</head>
+<body>
+    <h5>NOTIFICATION</h5>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="">Subject</label>
+        <br>
+        <input type="text" name="subject">
+        <br>
+        <label for="">Message</label>
+        <br>
+        <textarea name="message" id="" cols="30" rows="10"></textarea>
+        <br>
+        <label for="">Email</label>
+        <br>
+        <input type="Email",name="e_mail">
+        <br>
+        <button type="submit">Send</button>
+    </form>
+    
+</body>
+</html>

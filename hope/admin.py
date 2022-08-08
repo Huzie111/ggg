@@ -3,19 +3,20 @@ from django.contrib import admin
 from .models import Books,Borrowed_books
 from datetime import datetime
 from django.contrib.auth.models import User
-# Register your models here.
+
 
 class BooksAdmin(admin.ModelAdmin):
+    # using the inbuilt properties
     list_display = ("title","author","copy_number","subject_area","publication_date","status")
     list_filter = ("subject_area","status")
     search_fields = ("title","author")
 admin.site.register(Books,BooksAdmin)
-
+                                #found in the forms default django settings
 class BorrowedBookChoicesField(forms.ModelChoiceField):
-
+    # label_from_instance is a default django admin func 
     def label_from_instance(self, obj) -> str:
         return f"{obj.title}"
-
+    # overriding django default interface to return required fields
 class BorrowedBooksAdmin(admin.ModelAdmin):
     list_display = ("book_name", "pickup_date", "return_date", "fine_charged", "return_status", "student")
     list_filter = ("book","user")
@@ -38,6 +39,8 @@ class BorrowedBooksAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change) -> None:
 
         if change:
+            # strf gets date object turns it into a string date
+            # strp gets string date turns it into date object
             return_date = datetime.strftime(obj.return_date, "%Y-%m-%d %H:%M:%S:%f")
             fine = 0
             late_return = datetime.utcnow() - datetime.strptime(return_date, "%Y-%m-%d %H:%M:%S:%f")
@@ -47,7 +50,12 @@ class BorrowedBooksAdmin(admin.ModelAdmin):
                 fine = 15000
 
             obj.fine = fine
+            
 
         return super().save_model(request, obj, form, change)
 
 admin.site.register(Borrowed_books, BorrowedBooksAdmin)
+
+
+
+

@@ -15,7 +15,8 @@ urlpatterns = [
     path('book/<int:id>/Borrow',views.Borrow,name='Borrowpage'),
     path('book/borrow', views.borrow_book, name='borrow_book'),
     path('my/books', views.student_borrowed_books, name="student_borrowed_books"),
-    path('books/unpicked',views.unpicked_booked_books,name="unpicked_borrowed_books")
+    path('books/unpicked',views.unpicked,name="unpicked_borrowed_books"),
+    path('notification/',views.send_notification,name="send_notification"),
    
    
 ]
